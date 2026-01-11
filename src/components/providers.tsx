@@ -19,16 +19,14 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
                     enableSystem
                     disableTransitionOnChange>
                     <Authenticated>
-                        <UserButton/>
+                        <UserButton />
                         {children}
                     </Authenticated>
-                    <UnauthenticatedView/>
                     <Unauthenticated>
-                       <SignInButton/>
-                       <SignUpButton/>
+                        <UnauthenticatedView />
                     </Unauthenticated>
                     <AuthLoading>
-                       <AuthLoadingView/>
+                        <AuthLoadingView />
                     </AuthLoading>
 
                 </ThemeProvider>
