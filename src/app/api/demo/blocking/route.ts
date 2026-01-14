@@ -9,6 +9,11 @@ export async function POST() {
     const response = await generateText({
         model: google('models/gemini-2.5-flash'),
         prompt: "My name is Harsh",
+        experimental_telemetry:{
+            isEnabled: true,
+            recordInputs: true,
+            recordOutputs: true,
+        }
     });
 
     return Response.json({ text: response.text });
