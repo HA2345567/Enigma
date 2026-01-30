@@ -4,6 +4,14 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Id } from "../../../../convex/_generated/dataModel"
 import { FaGithub } from "react-icons/fa";
+import {Allotment} from "allotment";
+import { FileExplorer } from "./file-explorer";
+
+const MIN_SIDEBAR_WIDTH= 200
+const MAX_SIDEBAR_WIDTH= 800
+const DEFAULT_SIDEBAR_WIDTH= 350
+const DEFAULT_MAIN_SIZE = 1000 
+
 
 
 const Tab = ({
@@ -55,7 +63,20 @@ export const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
                     "absolute inset-0",
                     activeView ==="editor"? "visible": "invisible"
                 )}>
-                    <div>Editor</div>
+                    <Allotment defaultSizes={[DEFAULT_MAIN_SIZE, DEFAULT_SIDEBAR_WIDTH]}>
+                        <Allotment.Pane
+                        snap
+                        minSize={MIN_SIDEBAR_WIDTH}
+                        maxSize={MAX_SIDEBAR_WIDTH}
+                        preferredSize={DEFAULT_SIDEBAR_WIDTH}
+                        >
+                            <FileExplorer projectId={projectId}/>
+                        </Allotment.Pane>
+                        <Allotment.Pane>
+                            <p>Editor view</p>
+                        </Allotment.Pane>
+
+                    </Allotment>
                 </div>
                 <div className={cn(
                     "absolute inset-0",
